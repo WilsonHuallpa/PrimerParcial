@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Item } from './components/layout/layout.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'primerParcial';
+  items: Item[] = [
+    {
+      title: 'inicio',
+      link: '/',
+      active: true,
+    },
+    {
+      title: 'login',
+      link: '/login',
+      active: false
+    },
+    {
+      title: 'repartidor',
+      link: '/repartidor',
+      active: false
+    }
+  ]
 }

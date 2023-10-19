@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TablapaisesComponent } from './tablapaises/tablapaises.component';
 import { RouterModule } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
-  declarations: [TablapaisesComponent],
+  declarations: [TablapaisesComponent, LayoutComponent],
   exports: [
-    TablapaisesComponent
+    TablapaisesComponent,
+    LayoutComponent
   ],
   imports: [CommonModule,RouterModule],
 })
