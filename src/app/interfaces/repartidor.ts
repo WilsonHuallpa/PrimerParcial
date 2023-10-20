@@ -5,5 +5,5 @@ export default interface IRepartidor {
     edad: string;
     capacidad: string;
     unidadPropia: string;
-    país: string;
+    pais: string;
   }

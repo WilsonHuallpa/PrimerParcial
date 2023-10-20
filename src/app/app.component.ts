@@ -21,7 +21,19 @@ export class AppComponent {
     {
       title: 'repartidor',
       link: '/repartidor',
-      active: false
+      active: false,
+      children: [
+        {
+          title: 'Alta Repartidor',
+          link: '/repartidor/alta',
+          active: true,
+        },
+        {
+          title: 'Detalle De Repartidor',
+          link: '/repartidor/detalle',
+          active: true,
+        },
+      ]
     }
   ]
 }

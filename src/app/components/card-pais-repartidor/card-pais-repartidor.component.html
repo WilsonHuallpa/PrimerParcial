@@ -1,0 +1,14 @@
+<div *ngIf="repartidorPais" class="card">
+    <img
+      *ngIf="repartidorPais.flag"
+      [src]="repartidorPais.flag"
+      class="card-img-top"
+      alt="{{ repartidorPais.nombrePais }}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ repartidorPais.nombrePais }}</h5>
+      <p class="card-text">Region: {{ repartidorPais.region }}</p>
+      <p class="card-text">Idioma: {{ repartidorPais.languages }}</p>
+      <p class="card-text">Usuario: {{ repartidorPais.usuario }}</p>
+    </div>
+  </div>
