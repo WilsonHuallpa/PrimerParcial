@@ -3,18 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { BienvenidoComponent } from './pages/bienvenido/bienvenido.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
 import { SalenHeladosComponent } from './pages/salen-helados/salen-helados.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login', 
+    redirectTo: 'inicio', 
     pathMatch: 'full'
   },
   {
     path: 'inicio',
     component: BienvenidoComponent,
-    canActivate:[authGuard]
   },
   {
     path: 'login',
@@ -23,11 +23,12 @@ const routes: Routes = [
   {
     path: 'repartidor',
     loadChildren: () => import('./pages/repartidor/repartidor.module').then(m => m.RepartidorModule),
-    canActivate:[authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'salenHelados',
     component: SalenHeladosComponent,
+    canActivate: [authGuard, adminGuard]
   },
 ];
 

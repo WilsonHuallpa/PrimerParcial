@@ -7,6 +7,7 @@ import {
   doc,
   collectionData,
   deleteDoc,
+  getDoc,
 } from '@angular/fire/firestore';
 import IRepartidor from '../interfaces/repartidor';
 import { Observable } from 'rxjs';
@@ -37,13 +38,21 @@ export class FirestoreService {
     return collectionData(actorRef, { idField: 'id' }) as Observable<IHelado[]>;
   }
   updateHelado(id: string, data: any) {
-    const col = collection(this.firestore, 'helados')
+    const col = collection(this.firestore, 'helados');
     const heladoRef = doc(col, id);
     return updateDoc(heladoRef, data);
   }
-  delete(id:string){
+  delete(id: string) {
     const col = collection(this.firestore, 'helados');
-    const documento = doc(col,id);
+    const documento = doc(col, id);
     deleteDoc(documento);
+  }
+  async getRol(email: string) {
+    const dEmployee = doc(this.firestore, 'usuarios', email);
+    let snapshot = await getDoc(dEmployee);
+    if (!snapshot.exists()) {
+      return null;
+    }
+    return snapshot.data()['rol'];
   }
 }

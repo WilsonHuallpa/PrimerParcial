@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 export type Item = {
   title: string;
@@ -14,8 +15,11 @@ export type Item = {
 export class LayoutComponent {
   @Input() items: Item[] = [];
 
-  constructor(private authUser: AuthService) {}
+  constructor(public authUser: AuthService, private router: Router) {}
   cerrarSesion() {
+    console.log('entro')
     this.authUser.logout();
+    this.router.navigate(['/inicio']);
   }
+
 }
