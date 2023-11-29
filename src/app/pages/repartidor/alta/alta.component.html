@@ -1,105 +1,194 @@
 <div class="container">
-    <main>
-      <div class="row g-5 mt-1">
-        <div class="col-md-5 col-lg-4 order-md-last">
-          <app-tablapaises
-            [pais]="repartidor.value.pais"
-            (seleccionar)="seleccionarPais($event)"
-          />
-        </div>
-        <div class="col-md-7 col-lg-8">
-          <h4 class="mb-3">Alta Actores</h4>
-          <form
-            (ngSubmit)="addUser()"
-            [formGroup]="repartidor"
-            class="needs-validation"
-            novalidate
-          >
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <label for="firstName" class="form-label">Nombre</label>
+  <main>
+    <div class="row g-5 mt-1">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <app-tablapaises
+          [pais]="repartidor.value.pais"
+          (seleccionar)="seleccionarPais($event)"
+        />
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Alta Repartidor</h4>
+        <form
+          (ngSubmit)="addUser()"
+          [formGroup]="repartidor"
+          class="needs-validation"
+          novalidate
+        >
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="firstName" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                placeholder=""
+                formControlName="nombre"
+              />
+              <span
+                *ngIf="
+                  repartidor.get('nombre')?.hasError('required') &&
+                  repartidor.get('nombre')?.touched
+                "
+                class="text-danger"
+              >
+                EL <strong>Nombre</strong> es requerido</span
+              >
+              <span
+                *ngIf="
+                  repartidor.get('nombre')?.hasError('minlength') &&
+                  repartidor.get('nombre')?.touched
+                "
+                class="text-danger"
+              >
+                EL <strong>Nombre</strong> Debe ser mas de 3 caracteres</span
+              >
+            </div>
+
+            <div class="ccol-12 col-md-6">
+              <label for="lastName" class="form-label">DNI</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                placeholder=""
+                formControlName="dni"
+              />
+              <span
+                *ngIf="
+                  repartidor.get('dni')?.hasError('required') &&
+                  repartidor.get('dni')?.touched
+                "
+                class="text-danger"
+              >
+                EL <strong>DNI</strong> es requerido
+              </span>
+              <span
+                *ngIf="
+                  repartidor.get('dni')?.hasError('soloNumeros') &&
+                  repartidor.get('dni')?.touched
+                "
+                class="text-danger"
+              >
+                EL <strong>DNI</strong> solo numeros
+              </span>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="address" class="form-label">Edad</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                placeholder=""
+                formControlName="edad"
+              />
+              <span
+                *ngIf="
+                  repartidor.get('edad')?.hasError('required') &&
+                  repartidor.get('edad')?.touched
+                "
+                class="text-danger"
+              >
+                La <strong>Edad</strong> es requerido</span
+              >
+              <span
+                *ngIf="
+                  repartidor.get('edad')?.hasError('min') &&
+                  repartidor.get('edad')?.touched
+                "
+                class="text-danger"
+              >
+                La <strong>Edad</strong> debe ser mayor o igual a 18 años.
+              </span>
+              <span
+                *ngIf="
+                  repartidor.get('edad')?.hasError('max') &&
+                  repartidor.get('edad')?.touched
+                "
+                class="text-danger"
+              >
+                La <strong>Edad</strong> debe ser menor o igual a 99 años.
+              </span>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="country" class="form-label">País de origen</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                formControlName="pais"
+                [readonly]="true"
+              />
+              <span
+                *ngIf="
+                  repartidor.get('pais')?.hasError('required') &&
+                  repartidor.get('pais')?.touched
+                "
+                class="text-danger"
+              >
+                La <strong> Pais</strong> es requerido</span
+              >
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="state" class="form-label"
+                >Capacidad de transporte</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                formControlName="capacidad"
+              />
+              <span
+                *ngIf="
+                  repartidor.get('capacidad')?.hasError('required') &&
+                  repartidor.get('capacidad')?.touched
+                "
+                class="text-danger"
+              >
+                La <strong> capacidad </strong> es requerido
+              </span>
+              <span
+                *ngIf="
+                  repartidor.get('capacidad')?.hasError('soloNumeros') &&
+                  repartidor.get('capacidad')?.touched
+                "
+                class="text-danger"
+              >
+                EL <strong> capacidad </strong> permite solo numeros
+              </span>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="form-check">
                 <input
-                  type="text"
-                  class="form-control"
-                  id="firstName"
-                  placeholder=""
-                  formControlName="nombre"
-                />
-                <div class="invalid-feedback">Valid first name is required.</div>
-              </div>
-  
-              <div class="col-sm-6">
-                <label for="lastName" class="form-label">Dni</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastName"
-                  placeholder=""
-                  formControlName="dni"
-                />
-                <div class="invalid-feedback">Valid last name is required.</div>
-              </div>
-  
-              <div class="col-12">
-                <label for="address" class="form-label">Edad</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="address"
-                  placeholder=""
-                  formControlName="edad"
-                />
-                <div class="invalid-feedback">
-                  Please enter your shipping address.
-                </div>
-              </div>
-  
-              <div class="col-md-5">
-                <label for="country" class="form-label">Pais</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder=""
-                  formControlName="pais"
-                />
-                <div class="invalid-feedback">Pais code required.</div>
-              </div>
-  
-              <div class="col-md-4">
-                <label for="state" class="form-label">Capacidad</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder=""
-                  formControlName="capacidad"
-                />
-  
-                <div class="invalid-feedback">Please provide a valid state.</div>
-              </div>
-  
-              <div class="col-md-3">
-                <label for="zip" class="form-label">Unidad Propia</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="zip"
-                  placeholder=""
+                  type="checkbox"
+                  class="form-check-input"
+                  id="same-address"
                   formControlName="unidadPropia"
                 />
-                <div class="invalid-feedback">Zip code required.</div>
+                <label class="form-check-label" for="same-address">
+                  Unidad Propia
+                  <span class="text-muted">(verdadero o falso)</span></label
+                >
               </div>
             </div>
-            <hr class="my-4" />
-            <button
-              class="w-100 btn btn-lg"
-              style="background-color: #0d689d; color: white"
-              type="submit"
-              [disabled]="!repartidor.valid" 
-            >
-              Agregar
-            </button>
-          </form>
-        </div>
+          </div>
+          <hr class="my-4" />
+          <button
+            class="w-100 btn btn-lg"
+            style="background-color: #0d689d; color: white"
+            type="submit"
+            [disabled]="!repartidor.valid"
+          >
+            Agregar
+          </button>
+        </form>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
+</div>
+

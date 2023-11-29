@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -10,24 +10,35 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 export class AltaComponent {
   repartidor: FormGroup;
   valorPasarAlHijo = 'pais';
-  // private firestore: FirestoreService
+
   constructor(private fb: FormBuilder,private firestore: FirestoreService ) {
     this.repartidor = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      dni: ['', [Validators.required, Validators.minLength(3)]],
-      edad: ['', [Validators.required, Validators.minLength(3)]],
-      capacidad: ['', [Validators.required, Validators.email]],
-      unidadPropia: ['', [Validators.required, Validators.minLength(3)]],
+      dni: ['', [Validators.required, this.validarNumero]],
+      edad: ['', [Validators.required, Validators.min(18), Validators.max(99) ]],
+      capacidad: ['', [Validators.required, this.validarNumero]],
+      unidadPropia: [false,],
       pais: ['', [Validators.required]],
     });
   }
 
+  validarNumero(control: AbstractControl): object | null  {
+    const num = control.value;
+    const soloNumeros = /^\d+$/;
+    if (!soloNumeros.test(num)) {
+      return { soloNumeros: true };
+    }
+    return null;
+  }
 
   addUser() {
-    const user = this.repartidor.value;
+    const data = this.repartidor.value;
+    //Agregar spiner y mensaje que se subio correctamente
     try {
-      this.firestore.addActor(user);
+      this.firestore.addActor(data);
+      this.repartidor.reset();
     } catch (error) {
+      console.log('Error:',error)
     }
   }
   seleccionarPais(pais: string) {

@@ -1,0 +1,42 @@
+<section>
+  <app-table-helados 
+    [helados]="helados"
+    [heladoSelecionado]="heladoSelecionado"
+    (heladoSeleccionado)="heladoSeleccionado($event)"
+  />
+  <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+      <app-crear-helado
+        [loading]="loading"
+        (agregarHelado)="agregarHelado($event)"
+      />
+    </div>
+    <div class="col">
+      <app-modificar-helado
+      [loading01]="loading01"
+      [heladoSelecionado]="heladoSelecionado"
+      (modificarHelado)="modificarHelado($event)"
+      />
+    </div>
+    <div class="col">
+      <app-eliminar-helado
+      [loading02]="loading02"
+      [heladoSelecionado]="heladoSelecionado"
+      (eliminarHelado)="eliminarHelado($event)"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- 
+Salen HELADOS (solo personas logeadas que sean administradores),
+ en una página tenemos un componente que
+Lista los HELADOS que están listos, 
+los HELADOS tienen un nombre para el sabor, un tipo (agua, crema), precio y un
+peso aproximado (entre 250 gramos y 1000 gramos). Solo puede tener un sabor el pote.
+En esta página tenemos:
+Un componente que crea un HELADO y dispara un OUTPUT con esa HELADO.
+Un componente que modifica una HELADO que tiene por INPUT. Cambia todo menos el nombre.
+Un componente que borra una HELADO que tiene por INPUT.
+Utilizar el template :
+https://getbootstrap.com/docs/5.1/examples/pricing/ -->

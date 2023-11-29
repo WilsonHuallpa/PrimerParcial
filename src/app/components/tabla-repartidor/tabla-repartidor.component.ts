@@ -7,15 +7,10 @@ import IRepartidor from 'src/app/interfaces/repartidor';
 })
 export class TablaRepartidorComponent {
   @Input() repartidor!: IRepartidor[];
-  @Output() verPaisClick = new EventEmitter<IRepartidor>();
-  @Output() verMasClick = new EventEmitter<IRepartidor>();
-  
-  verPais(actor: IRepartidor) {
-    this.verPaisClick.emit(actor);
-  }
+  @Output() repartidorSeleccionadoClick = new EventEmitter<IRepartidor>();
 
-  verMas(actor: IRepartidor) {
-    this.verMasClick.emit(actor);
+  repartidorSeleccionado(repartidor: IRepartidor) {
+    this.repartidorSeleccionadoClick.emit(repartidor);
   }
 }
 

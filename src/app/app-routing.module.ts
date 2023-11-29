@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BienvenidoComponent } from './pages/bienvenido/bienvenido.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
+import { SalenHeladosComponent } from './pages/salen-helados/salen-helados.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'repartidor',
     loadChildren: () => import('./pages/repartidor/repartidor.module').then(m => m.RepartidorModule),
     canActivate:[authGuard]
+  },
+  {
+    path: 'salenHelados',
+    component: SalenHeladosComponent,
   },
 ];
 

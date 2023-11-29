@@ -8,7 +8,7 @@ export type repartidorPais = {
   nombrePais: string;
   flag: string;
   region: string;
-  languages: string;
+  languages: string[];
 };
 @Component({
   selector: 'app-detalles',
@@ -16,7 +16,7 @@ export type repartidorPais = {
   styleUrls: ['./detalles.component.scss']
 })
 export class DetallesComponent {
-  repartidor!: IRepartidor[];
+  repartidores!: IRepartidor[];
   repartidorPais!: repartidorPais;
   repartidorDetalles!: IRepartidor;
 
@@ -24,22 +24,26 @@ export class DetallesComponent {
     private firestore: FirestoreService,
     private bandera: BanderasService
   ) {}
+
   ngOnInit(): void {
     this.firestore.getRepartidor().subscribe((data) => {
-      this.repartidor = data;
-      console.log('listado de actores', this.repartidor);
+      this.repartidores = data;
     });
   }
- 
+   onRepartidorSeleccionado(repartidor: IRepartidor) {
+    this.verPais(repartidor);
+    this.verMas(repartidor)
+  }
   verPais(repartidor: IRepartidor) {
     this.bandera.pais(repartidor.pais).subscribe((data) => {
       const { name, region, flags, languages } = data[0];
+      const idiomas: string[] = Object.values(languages);
       this.repartidorPais = {
         usuario: repartidor.nombre,
         nombrePais: name.common,
         flag: flags.png,
         region: region,
-        languages: languages.spa,
+        languages: idiomas,
       };
     });
   }

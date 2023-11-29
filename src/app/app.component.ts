@@ -34,6 +34,11 @@ export class AppComponent {
           active: true,
         },
       ]
-    }
+    },
+    {
+      title: 'Salen Helados',
+      link: '/salenHelados',
+      active: false
+    },
   ]
 }

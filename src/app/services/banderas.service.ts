@@ -10,6 +10,10 @@ export class BanderasService {
 
   constructor(private http: HttpClient) {}
 
+  
+  getRegion(region: string): Observable<any> {
+      return this.http.get(this.api + 'region/' + region);
+    }
   todos(): Observable<any> {
     return this.http.get(this.api + 'all');
   }

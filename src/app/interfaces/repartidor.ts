@@ -4,6 +4,6 @@ export default interface IRepartidor {
     dni: string;
     edad: string;
     capacidad: string;
-    unidadPropia: string;
+    unidadPropia: boolean;
     pais: string;
   }

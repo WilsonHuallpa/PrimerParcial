@@ -1,23 +1,14 @@
-<section class="py-5 text-center container">
-    <app-table-repartidor
-      [repartidor]="repartidor"
-      (verPaisClick)="verPais($event)"
-      (verMasClick)="verMas($event)"
-    />
-  </section>
-  
-  <main>
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
-            <app-card-pais-repartidor [repartidorPais]="repartidorPais" />
-          </div>
-          <div class="col">
-            <app-card-repartidor [actorDetalles]="repartidorDetalles" />
-          </div>
-        </div>
-      </div>
+<div class="container py-4">
+  <app-table-repartidor
+    [repartidor]="repartidores"
+    (repartidorSeleccionadoClick)="onRepartidorSeleccionado($event)"
+  ></app-table-repartidor>
+  <div class="row align-items-md-stretch">
+    <div class="col-md-6">
+      <app-card-pais-repartidor [repartidorPais]="repartidorPais" />
     </div>
-  </main>
-  
+    <div class="col-md-6">
+      <app-card-repartidor [actorDetalles]="repartidorDetalles" />
+    </div>
+  </div>
+</div>

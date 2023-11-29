@@ -9,7 +9,7 @@ import { BanderasService } from 'src/app/services/banderas.service';
 export class TablapaisesComponent implements OnInit{
   botonSeleccionado: string | null = null;
   misBanderas: any[] | undefined;
-
+  selecContinente: string = ''; 
   bandera: string = '';
   currentPage: number = 1;
   itemsPerPage: number = 10;
@@ -20,9 +20,6 @@ export class TablapaisesComponent implements OnInit{
   constructor(private servBandea: BanderasService) {}
 
   ngOnInit(): void {
-    this.servBandea.todos().subscribe((banderas) => {
-      this.misBanderas = banderas;
-    });
   }
 
   getDisplayedCountries(): any[] {
@@ -39,5 +36,9 @@ export class TablapaisesComponent implements OnInit{
     return this.selectedCountry === country;
 
   }
-
+  filterCountriesByRegion(region: string): void {
+    this.servBandea.getRegion(region).subscribe((banderas) => {
+      this.misBanderas = banderas.slice(0, 3);
+    });
+  }
 }

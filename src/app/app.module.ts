@@ -12,9 +12,11 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { ComponentsModule } from './components/components.module';
+import { SalenHeladosComponent } from './pages/salen-helados/salen-helados.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { ComponentsModule } from './components/components.module';
     AppComponent,
     BienvenidoComponent,
     LoginComponent,
+    SalenHeladosComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ import { ComponentsModule } from './components/components.module';
     provideStorage(() => getStorage()),
     FormsModule,
     ReactiveFormsModule,
-    ComponentsModule
+    ComponentsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), 
   ],
   providers: [],
   bootstrap: [AppComponent]

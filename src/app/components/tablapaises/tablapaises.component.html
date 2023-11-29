@@ -1,15 +1,12 @@
 <section>
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-      <span class="text-primary">Lista de Paises</span>
-      <span class="badge bg-primary rounded-pill">3</span>
+      <span class="text-primary">{{(this.selecContinente !=='') ? 'Lista de Paises' : 'Seleccione el continente'}} </span>
     </h4>
-    <form class="card p-2">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Promo code" />
-        <button type="submit" class="btn btn-secondary">Redeem</button>
-      </div>
-    </form>
-  
+    <select class="form-select mb-4" aria-label="Default select example" [(ngModel)]="selecContinente" name="continent" (change)="filterCountriesByRegion(selecContinente)">
+      <option [ngValue]="'europe'">Europa</option>
+      <option [ngValue]="'africa'">Africa</option>
+    </select>
+    <!-- agregar spinner opcional -->
     <ul class="list-group" *ngFor="let bandera of getDisplayedCountries()" >
       <li 
       class="list-group-item d-flex justify-content-start lh-sm"

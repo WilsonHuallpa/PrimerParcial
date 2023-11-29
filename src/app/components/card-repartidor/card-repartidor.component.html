@@ -1,11 +1,12 @@
-<div *ngIf="actorDetalles" class="card">
+<div *ngIf="actorDetalles" class="card h-100 p-5 bg-light border rounded-3">
     <div class="card-body">
-      <h5 class="card-title">{{ actorDetalles.nombre }}</h5>
-    
-      <p class="card-text">apellido: {{ actorDetalles.edad }}</p>
-      <p class="card-text">correo: {{ actorDetalles.dni}}</p>
-      <p class="card-text">pais: {{ actorDetalles.pais }}</p>
-      <p class="card-text">Dirreción: {{ actorDetalles.unidadPropia }}</p>
+      <h3 class="card-title">NOMBRE: {{ actorDetalles.nombre | uppercase }}</h3>
+      <hr/>
+      <p class="card-text">DNI: {{ actorDetalles.dni }}</p>
+      <p class="card-text">EDAD: {{ actorDetalles.edad}}</p>
+      <p class="card-text">PAIS: {{ actorDetalles.pais }}</p>
+      <p class="card-text">CAPACIDAD: {{ actorDetalles.capacidad }}</p>
+      <p class="card-text">UNIDAD PROPIA: {{ actorDetalles.unidadPropia }}</p>
     </div>
   </div>
   
