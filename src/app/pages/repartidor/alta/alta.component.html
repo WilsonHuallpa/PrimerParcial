@@ -182,13 +182,18 @@
             class="w-100 btn btn-lg"
             style="background-color: #0d689d; color: white"
             type="submit"
-            [disabled]="!repartidor.valid"
+            [disabled]="!repartidor.valid || loading"
           >
-            Agregar
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            {{ loading ? "" : "Agregar" }}
           </button>
         </form>
       </div>
     </div>
   </main>
 </div>
-
