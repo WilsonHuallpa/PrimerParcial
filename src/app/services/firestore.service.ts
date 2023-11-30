@@ -8,16 +8,24 @@ import {
   collectionData,
   deleteDoc,
   getDoc,
+  setDoc,
 } from '@angular/fire/firestore';
 import IRepartidor from '../interfaces/repartidor';
 import { Observable } from 'rxjs';
 import IHelado from '../interfaces/helado';
+import Usarios from '../interfaces/usuarios';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirestoreService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore) {
+
+  }
+  addUsuarios(user: Usarios) {
+    const docRef = doc(this.firestore, 'usuarios', user.email);
+    return setDoc(docRef,user);
+  }
 
   addActor(actor: IRepartidor) {
     const aCollection = collection(this.firestore, 'repatidor');

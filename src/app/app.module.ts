@@ -17,6 +17,8 @@ import { SalenHeladosComponent } from './pages/salen-helados/salen-helados.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { RegisterComponent } from './pages/register/register.component';
+import { TerminosComponent } from './pages/terminos/terminos.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
     BienvenidoComponent,
     LoginComponent,
     SalenHeladosComponent,
+    RegisterComponent,
+    TerminosComponent,
   ],
   imports: [
     BrowserModule,

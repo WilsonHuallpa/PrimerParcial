@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { FirestoreService } from './firestore.service';
 @Injectable({
@@ -7,7 +7,20 @@ import { FirestoreService } from './firestore.service';
 })
 export class AuthService {
   
+  private user = {
+    email: '',
+    acceptedTerms: false,
+  };
 
+  getUser() {
+    return this.user;
+  }
+
+  setUser(email: string, acceptedTerms: boolean) {
+    this.user.email = email;
+    this.user.acceptedTerms = acceptedTerms;
+  } 
+  
   constructor(private auth: Auth, private fire: FirestoreService) { 
 
   }
@@ -20,6 +33,9 @@ export class AuthService {
   isAuthenticated() {
     return this.auth.currentUser;
   }
+  registerUser(email: string, password: string): Promise<any> {
+    return createUserWithEmailAndPassword(this.auth, email, password);
+  }
   rolUser(){
     const user = this.isAuthenticated()
     let rol = null;
@@ -28,4 +44,5 @@ export class AuthService {
     }
     return rol;
   }
+  
 }

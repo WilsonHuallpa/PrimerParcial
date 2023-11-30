@@ -30,7 +30,7 @@ export class LoginComponent {
     this.authUser
       .loginUser(email, password)
       .then((user) => {
-        console.log(user)
+        this.authUser.setUser(email, true);
         this.router.navigate(['inicio']);
       })
       .catch((error) => {
